@@ -28,19 +28,33 @@ const students = [
   'erven1985',
   'Vostenzuk',
   'OlBol',
-  'golah30'
+  'golah30',
+  'necrolyss',
+  'flightik',
+  'NikitaSmithTheOne',
+  'IvanOpanasiuk',
+  'notherkappa',
+  'maxim1989',
+  'Ivan3008',
+  'IrinaKondrateva',
+  'dkrasheninnikov',
+  'AntonLantukh',
+  'anton-yakovlev',
+  'eugenedan',
+  'evgeniyandrusenko',
+  'aelsergeev'
 ];
 
 async function main() {
   for (let student of students) {
-    await createHomeworkBranch(1, student);
+    await createHomeworkBranch(8, student);
   }
   await execPromise('git checkout june_master');
 }
 
 async function createHomeworkBranch(homeworkNumber, student) {
-  let homeworkName = `${student}/homework_${homeworkNumber}`;
-  await execPromise(`git checkout homework_${homeworkNumber}`);
+  let homeworkName = `${student}/homework-${homeworkNumber}`;
+  await execPromise(`git checkout homework-${homeworkNumber}`);
   await execPromise(`git checkout -b ${homeworkName}`);
   await execPromise(`git push --set-upstream origin ${homeworkName}`);
 }
