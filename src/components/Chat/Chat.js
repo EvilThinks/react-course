@@ -9,7 +9,7 @@ export default class Chat extends Component {
   };
 
   render() {
-    const { messageInput, messages } = this.state;
+    const { messages, messageInput } = this.state;
 
     return (
       <div className="chat">
@@ -42,8 +42,6 @@ export default class Chat extends Component {
         messages: [...state.messages, { text: state.messageInput }],
         messageInput: ''
       }));
-      let elm = document.querySelector('.message-list');
-      elm.scrollTop = elm.clientHeight;
     }
   };
 }

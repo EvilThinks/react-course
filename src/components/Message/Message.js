@@ -6,4 +6,3 @@ export default class Message extends Component {
     return <span className="message">{this.props.text}</span>;
   }
 }
-
