@@ -57,12 +57,10 @@ class App extends Component {
       </div>
     );
   }
-  handleTabClick = e => {
-    if (e) {
-      this.setState({
-        step: e
-      });
-    }
+  handleTabClick = nextStep => {
+    this.setState({
+      step: nextStep
+    });
   };
   handleChangeForm = (first, second) => {
     if (first && second) {
@@ -71,12 +69,12 @@ class App extends Component {
       });
     }
   };
-  handleClickNextForm = e => {
+  handleClickNextForm = () => {
     this.setState({
       step: this.state.step + 1
     });
   };
-  isFormCommitable = e => {
+  isFormCommitable = () => {
     switch (this.state.step) {
       case 1:
         return (
@@ -87,28 +85,24 @@ class App extends Component {
         );
       case 2:
         return this.state.cardNumber.length === 16;
-      case 1 && 2:
-        return false;
       default:
         return false;
     }
   };
-  renderForm = e => {
+  renderForm = () => {
     return this.state.step === 1 ? (
       <PersonalForm
         firstName={this.state.firstName}
         lastName={this.state.lastName}
         email={this.state.email}
         onChangeForm={this.handleChangeForm}
-      >
-      </PersonalForm>
+      />
     ) : this.state.step === 2 ? (
       <CardForm
         cardNumber={this.state.cardNumber}
         onChangeForm={this.handleChangeForm}
         onChangeTimeOver={this.handleChangeTimeOver}
-      >
-      </CardForm>
+      />
     ) : this.state.step === 3 ? (
       <p data-test="congratulations">Поздравляем!</p>
     ) : null;

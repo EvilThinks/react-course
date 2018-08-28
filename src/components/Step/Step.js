@@ -22,7 +22,7 @@ class Step extends Component {
       </div>
     );
   }
-  handleClick = e => {
+  handleClick = () => {
     const onClick = this.props.onClick;
     const number = this.props.number;
     this.props.isClickable ? onClick(number) : void 0;

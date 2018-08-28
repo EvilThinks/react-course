@@ -14,10 +14,10 @@ class CardForm extends Component {
     );
   }
   handleChangeForm = e => {
-    const target = e.target;
-    this.props.onChangeForm(target.name, target.value);
+    const { name, value } = e.target;
+    this.props.onChangeForm(name, value);
   };
-  componentWillUnmount = e => {};
+  componentWillUnmount = () => {};
 }
 
 export default CardForm;

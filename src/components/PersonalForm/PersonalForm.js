@@ -20,8 +20,8 @@ class PersonalForm extends Component {
     );
   }
   handleChangeForm = e => {
-    const target = e.target;
-    this.props.onChangeForm(target.name, target.value);
+    const { name, value } = e.target;
+    this.props.onChangeForm(name, value);
   };
 }
 
