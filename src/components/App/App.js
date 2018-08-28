@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
+import VideoPlayer from '../VideoPlayer';
+import Switcher from '../Switcher';
 
 class App extends Component {
-  render() {
-    return null;
+  render() { 
+    return ( 
+      <Switcher>
+        
+      </Switcher>
+     );
   }
 }
-
+ 
 export default App;
