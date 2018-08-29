@@ -8,30 +8,38 @@ class Switcher extends Component {
   state = {
     selectedChild: 0
   };
+  childs = React.Children.toArray(this.props.children);
   render() {
-    const Childs = React.Children.toArray(this.props.children);
-    console.log(Childs);
-    const renderedChilds = Childs.map((item, index) => {
-      return item;
-    });
     return (
       <div className="switcher">
         <nav>
-          <ul className="component-list">{this.handleChangeChild()}</ul>
+          <ul className="component-list">
+            {this.childs.map((child, index) => (
+              <li
+                key={child.key}
+                data-id={index}
+                className="component-list__name"
+                onClick={this.handleChangeChild}
+              >
+                {child.type.displayName || child.type.name}
+              </li>
+            ))}
+          </ul>
         </nav>
+        <hr />
+        <div className="component-wrapper">{this.renderChildren()}</div>
       </div>
     );
   }
-  handleChangeChild = e => {
-    return (
-      <li
-        data-id={this.props.index}
-        className="component-list__name"
-        onClick={hello}
-      >
-        {this.props.children}
-      </li>
-    );
+  handleChangeChild = event => {
+    //Доделать console.log(event.target.dataset.id)
+    this.setState({
+      selectedChild:event.target.dataset.id
+    });
+  };
+  renderChildren = () => {
+    const { selectedChild } = this.state;
+    return this.childs[selectedChild];
   };
 }
 
