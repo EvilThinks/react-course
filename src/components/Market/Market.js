@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Order from '../Order';
 import './Market.css';
 
 let id = 0;
@@ -20,7 +21,7 @@ export const vegetables = [
   'Лук',
   'Перец',
   'Картофель',
-  'Редька',
+  'Редька'
 ];
 
 const getNewOrder = () => {
@@ -28,14 +29,45 @@ const getNewOrder = () => {
     id: getId(),
     name: vegetables[Math.floor(Math.random() * vegetables.length)],
     price: 100 + Math.floor(Math.random() * 100),
-    createdAt: new Date(),
+    createdAt: new Date()
   };
 };
 
 export class Market extends Component {
   render() {
-    return <div className="market" />;
+    const { orders } = this.props;
+    return (
+      <div className="market">
+        <h2>Новые заказы в магазине</h2>
+        <button
+          onClick={this.handleCreateOrder}
+          className="new-orders__create-button"
+        >
+          Создать заказ
+        </button>
+        <button onClick={this.handleMoveOrderToFarm} disabled={!orders.length}>
+          Отправить заказ на ферму
+        </button>
+        <div className="order-list">
+          {orders.map(order => {
+            return (
+              <Order
+                key={order.id}
+                name={order.name}
+                price={order.price}
+                createdAt={order.createdAt.toString().substring(16)}
+              />
+            );
+          })}
+        </div>
+      </div>
+    );
   }
+  handleCreateOrder = () => {
+    this.props.createOrder(getNewOrder());
+  };
+  handleMoveOrderToFarm = () => {
+    this.props.moveOrderToFarm(this.props.orders[0]);
+  };
 }
-
 export default Market;
