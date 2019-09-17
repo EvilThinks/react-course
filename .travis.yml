@@ -10,6 +10,7 @@ cache:
 
 install:
   - yarn install
+  - yarn add cypress
 
 before_script:
   - yarn start -- --silent &
